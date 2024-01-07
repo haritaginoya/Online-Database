@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEE0C9">
+
+    <LinearLayout
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="140dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#4F709C"
+            android:text="sign in"
+            android:textColor="#ffffff"
+            app:cornerRadius="7dp"
+            app:icon="@drawable/signin"
+            app:iconGravity="start"
+            app:iconSize="20dp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/usernametextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="5dp"
+        android:hint="username"
+        android:textColorHint="#4F709C"
+        app:boxStrokeColor="#4F709C"
+        app:hintTextColor="#4F709C"
+        app:startIconDrawable="@drawable/profile"
+        app:startIconTint="#4F709C">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/usernamein"
+            android:layout_width="match_parent"
+            android:textColor="#4F709C"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passtextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/usernametextField"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="5dp"
+        android:hint="password"
+        android:textColorHint="#4F709C"
+        app:boxStrokeColor="#4F709C"
+        app:endIconMode="password_toggle"
+        app:hintTextColor="#4F709C"
+        app:startIconDrawable="@drawable/password"
+        app:startIconTint="#4F709C">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#4F709C"
+            android:inputType="textWebPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/fogotpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/passtextField"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="5dp"
+        android:text="Forgot password ?"
+        android:textColor="#4F709C"
+        android:textSize="17dp"
+        android:textStyle="bold" />
+
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fogotpass"
+        android:layout_marginLeft="21dp"
+
+        android:layout_marginTop="20dp"
+        android:text="Remember me"
+        android:textSize="16dp"
+
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/goprofile"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/checkbox"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#4F709C"
+        android:text="sign in"
+        app:cornerRadius="10dp"
+        app:icon="@drawable/login"
+        app:iconGravity="textStart"
+        app:iconSize="20dp" />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goprofile"
+        android:visibility="invisible"
+        android:id="@+id/progressbar"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/gosignup"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/progressbar"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#ffffff"
+        android:text="Don't have an account? Sign Up"
+        android:textColor="#4F709C"
+        app:cornerRadius="10dp"
+        app:iconGravity="textStart" />
+
+</RelativeLayout>
