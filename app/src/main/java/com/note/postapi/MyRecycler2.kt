@@ -1,7 +1,6 @@
 package com.note.postapi
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,13 +61,13 @@ class MyRecycler2(var context: Context, var arraylist: ArrayList<MyModel>) :
 
         holder.click.setOnClickListener {
 
-            context.startActivity(
-                Intent(context, ViewSingleProduct::class.java)
-                    .putExtra("pr_name", arraylist[position].PRODUCT_NAME)
-                    .putExtra("pr_price", arraylist[position].PRODUCT_PRICE)
-                    .putExtra("pr_des", arraylist[position].PRODUCT_DES)
-                    .putExtra("pr_image",arraylist[position].PRODUCT_IMAGE).putExtra("discount",arraylist[position].DISCOUNT)
-            )
+//            context.startActivity(
+//                Intent(context, ViewSingleProduct::class.java)
+//                    .putExtra("pr_name", arraylist[position].PRODUCT_NAME)
+//                    .putExtra("pr_price", arraylist[position].PRODUCT_PRICE)
+//                    .putExtra("pr_des", arraylist[position].PRODUCT_DES)
+//                    .putExtra("pr_image",arraylist[position].PRODUCT_IMAGE).putExtra("discount",arraylist[position].DISCOUNT)
+//            )
 
 
         }

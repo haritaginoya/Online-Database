@@ -103,7 +103,7 @@ class ViewSingleProduct : AppCompatActivity() {
                 Log.e("========", "onCreate: $it")
 
                 up_progressbar.visibility = View.INVISIBLE
-                startActivity(Intent(this@ViewSingleProduct,ViewProduct::class.java))
+//                startActivity(Intent(this@ViewSingleProduct,ViewProduct::class.java))
 
             }, {
 

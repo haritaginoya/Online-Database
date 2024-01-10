@@ -1,26 +1,40 @@
-package com.note.postapi
+package com.note.postapi.Fragments
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.note.postapi.HomePage
+import com.note.postapi.R
+import com.note.postapi.SplashScreen
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.io.ByteArrayOutputStream
 
-class AddProduct : AppCompatActivity() {
+class AddProductFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+
+        return inflater.inflate(R.layout.fragment_add_product, container, false)
+    }
 
     lateinit var selct_photo: ImageView
     lateinit var product_name: TextInputEditText
@@ -29,34 +43,28 @@ class AddProduct : AppCompatActivity() {
     lateinit var dis: TextInputEditText
     lateinit var add: MaterialButton
     lateinit var progress: ProgressBar
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_product)
-
-        selct_photo = findViewById(R.id.selct_photo)
-        progress = findViewById(R.id.progress)
-        dis = findViewById(R.id.dis)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        selct_photo = view.findViewById(R.id.selct_photo)
+        progress = view.findViewById(R.id.progress)
+        dis = view.findViewById(R.id.dis)
 
         selct_photo.setOnClickListener {
 
-            CropImage.activity()
-                .setGuidelines(CropImageView.Guidelines.ON)
-                .start(this);
+            CropImage.activity().setGuidelines(CropImageView.Guidelines.ON)
+                .start(context as Activity);
         }
 
-        product_name = findViewById(R.id.product_name)
-        product_price = findViewById(R.id.product_price)
-        product_des = findViewById(R.id.product_des)
-        add = findViewById(R.id.add)
+        product_name = view.findViewById(R.id.product_name)
+        product_price = view.findViewById(R.id.product_price)
+        product_des = view.findViewById(R.id.product_des)
+        add = view.findViewById(R.id.add)
 
         add.setOnClickListener {
             if (product_price.text.toString().equals("") || dis.text.toString().equals("")) {
-                if(product_price.text.toString().equals("")) {
+                if (product_price.text.toString().equals("")) {
                     product_price.setError("fill the blank")
-                }
-                else
-                {
+                } else {
                     dis.setError("fill the blank")
                 }
             } else {
@@ -72,7 +80,7 @@ class AddProduct : AppCompatActivity() {
                 var id = SplashScreen.sp.getInt("id", 0)
 
 
-                var que = Volley.newRequestQueue(this)
+                var que = Volley.newRequestQueue(context)
                 var url = "https://kotlinwork.000webhostapp.com/addproduct.php"
                 var stringRequest: StringRequest =
                     object : StringRequest(Request.Method.POST, url, Response.Listener { response ->
@@ -80,8 +88,7 @@ class AddProduct : AppCompatActivity() {
 
                         Log.e("checccc", "onCreate: ${response}")
 
-                        startActivity(Intent(this, HomePage::class.java))
-                        finish()
+                        startActivity(Intent(context, HomePage::class.java))
 
 
                     }, Response.ErrorListener {
@@ -114,12 +121,13 @@ class AddProduct : AppCompatActivity() {
 
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             val result = CropImage.getActivityResult(data)
-            if (resultCode == RESULT_OK) {
+            if (resultCode == AppCompatActivity.RESULT_OK) {
                 val resultUri = result.uri
                 selct_photo.setImageURI(resultUri)
 
@@ -131,4 +139,5 @@ class AddProduct : AppCompatActivity() {
 
 
     }
+
 }

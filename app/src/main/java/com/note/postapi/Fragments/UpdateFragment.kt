@@ -1,34 +1,47 @@
-package com.note.postapi
+package com.note.postapi.Fragments
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.note.postapi.MyModel
+import com.note.postapi.MyRecycler2
+import com.note.postapi.R
+import com.note.postapi.SplashScreen
 import org.json.JSONObject
 
-class UpdateProduct : AppCompatActivity() {
+
+class UpdateFragment : Fragment() {
 
     lateinit var recycle: RecyclerView
     lateinit var progress : ProgressBar
 
     var arraylist = ArrayList<MyModel>()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_update, container, false)
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_update_product)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
 
-        recycle = findViewById(R.id.up_recycle)
-        progress = findViewById(R.id.up_progress)
+        recycle = view.findViewById(R.id.up_recycle)
+        progress = view.findViewById(R.id.up_progress)
 
 
         progress.visibility = View.VISIBLE
-        var que = Volley.newRequestQueue(this)
+        var que = Volley.newRequestQueue(context)
         var url = "https://kotlinwork.000webhostapp.com/selectproduct.php"
         var stringrequest: StringRequest =
             object : StringRequest(Request.Method.POST, url, { Response ->
@@ -64,7 +77,7 @@ class UpdateProduct : AppCompatActivity() {
                 }
 
                 progress.visibility = View.INVISIBLE
-                var adapter = MyRecycler2(this, arraylist)
+                var adapter = context?.let { MyRecycler2(it, arraylist) }
                 recycle.adapter = adapter
 
                 Log.e("responsecheck", "onCreate: $Response")
@@ -87,4 +100,6 @@ class UpdateProduct : AppCompatActivity() {
 
 
     }
+
+
 }

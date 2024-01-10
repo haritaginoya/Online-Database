@@ -1,6 +1,5 @@
 package com.note.postapi
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,6 +9,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
+import com.note.postapi.Fragments.UpdateFragment
+import com.note.postapi.Fragments.ViewFragment
+import com.note.postapi.Fragments.AddProductFragment as AddProductFragment1
 
 class HomePage : AppCompatActivity() {
 
@@ -18,6 +20,9 @@ class HomePage : AppCompatActivity() {
     lateinit var navigation: NavigationView
     var username = ""
     var imagepath = ""
+    lateinit var heading : TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +32,7 @@ class HomePage : AppCompatActivity() {
         drawer = findViewById(R.id.drawer)
         navigation = findViewById(R.id.navigation)
 
+        heading = findViewById(R.id.heading)
         setSupportActionBar(tool)
 
         var actiontoggle = ActionBarDrawerToggle(this, drawer, tool, R.string.open, R.string.close)
@@ -38,18 +44,36 @@ class HomePage : AppCompatActivity() {
         var addproduct: TextView
         var view = navigation.getHeaderView(0)
 
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.framelayout, ViewFragment()).commit()
+
+
+
+
+
         navigation.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.addroduct -> {
-                    startActivity(Intent(this@HomePage, AddProduct::class.java))
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.framelayout, AddProductFragment1()).commit()
+                    heading.setText("ADD PRODUCT")
+                    drawer.closeDrawers();
                 }
                 R.id.viewproduct ->{
 
-                    startActivity(Intent(this@HomePage,ViewProduct::class.java))
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.framelayout, ViewFragment()).commit()
+                    heading.setText("VIEW PRODUCT")
+                    drawer.closeDrawers();
+
                 }
                 R.id.editproduct ->
                 {
-                    startActivity(Intent(this@HomePage,UpdateProduct::class.java))
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.framelayout, UpdateFragment()).commit()
+                    heading.setText("EDIT PRODUCT")
+
+                    drawer.closeDrawers();
                 }
             }
 
@@ -70,4 +94,5 @@ class HomePage : AppCompatActivity() {
         Glide.with(this).load("https://kotlinwork.000webhostapp.com/${imagepath}")
             .into(image);
     }
+
 }

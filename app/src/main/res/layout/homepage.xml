@@ -6,10 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawer"
     tools:context=".HomePage">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/first"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -22,16 +26,19 @@
                 android:layout_height="match_parent"
                 android:fontFamily="casual"
                 android:gravity="center"
-                android:text="HOME PAGE"
+                android:id="@+id/heading"
+                android:textAllCaps="true"
                 android:textSize="40dp"
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/first" />
+</RelativeLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
