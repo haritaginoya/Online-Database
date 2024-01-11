@@ -11,15 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.note.postapi.Adapter.MyRecycler
 import com.note.postapi.MyModel
-import com.note.postapi.MyRecycler
 import com.note.postapi.R
 import com.note.postapi.SplashScreen
 import org.json.JSONObject
 
 class ViewFragment : Fragment() {
 
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        arguments.getString()
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,7 +78,7 @@ class ViewFragment : Fragment() {
                 }
 
                 progress.visibility = View.INVISIBLE
-                var adapter = context?.let { MyRecycler(it, arraylist) }
+                var adapter = context?.let { MyRecycler(requireActivity(), arraylist) }
                 recycle.adapter = adapter
 
                 Log.e("responsecheck", "onCreate: $Response")
@@ -88,8 +91,6 @@ class ViewFragment : Fragment() {
                     var map = HashMap<String, String>()
 
                     map.put("userid", SplashScreen.sp.getInt("id", 0).toString())
-
-
                     return map
                 }
             }

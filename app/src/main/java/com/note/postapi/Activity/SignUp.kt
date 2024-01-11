@@ -1,4 +1,4 @@
-package com.note.postapi
+package com.note.postapi.Activity
 
 
 import android.content.Intent
@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.note.postapi.R
 import com.theartofdev.edmodo.cropper.CropImage
 import com.theartofdev.edmodo.cropper.CropImageView
 import java.io.ByteArrayOutputStream
@@ -116,7 +117,7 @@ class SignUp : AppCompatActivity() {
                 }
 
             que.add(stringrequest)
-            startActivity(Intent(this,SignIn::class.java))
+            startActivity(Intent(this, SignIn::class.java))
             finish()
 
         }

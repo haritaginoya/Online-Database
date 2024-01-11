@@ -1,4 +1,4 @@
-package com.note.postapi
+package com.note.postapi.Activity
 
 import android.os.Bundle
 import android.widget.ImageView
@@ -9,9 +9,10 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
-import com.note.postapi.Fragments.UpdateFragment
+import com.note.postapi.Fragments.AddProductFragment
 import com.note.postapi.Fragments.ViewFragment
-import com.note.postapi.Fragments.AddProductFragment as AddProductFragment1
+import com.note.postapi.R
+import com.note.postapi.SplashScreen
 
 class HomePage : AppCompatActivity() {
 
@@ -21,8 +22,6 @@ class HomePage : AppCompatActivity() {
     var username = ""
     var imagepath = ""
     lateinit var heading : TextView
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,35 +47,21 @@ class HomePage : AppCompatActivity() {
             .replace(R.id.framelayout, ViewFragment()).commit()
 
 
-
-
-
         navigation.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.addroduct -> {
+                R.id.addproduct -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.framelayout, AddProductFragment1()).commit()
+                        .replace(R.id.framelayout, AddProductFragment()).commit()
                     heading.setText("ADD PRODUCT")
                     drawer.closeDrawers();
                 }
-                R.id.viewproduct ->{
-
+                R.id.viewproduct -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.framelayout, ViewFragment()).commit()
                     heading.setText("VIEW PRODUCT")
                     drawer.closeDrawers();
-
-                }
-                R.id.editproduct ->
-                {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.framelayout, UpdateFragment()).commit()
-                    heading.setText("EDIT PRODUCT")
-
-                    drawer.closeDrawers();
                 }
             }
-
             false
         }
 

@@ -37,13 +37,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomePage"
+            android:name=".Activity.HomePage"
             android:exported="false" />
         <activity
-            android:name=".SignIn"
+            android:name=".Activity.SignIn"
             android:exported="false" />
         <activity
-            android:name=".SignUp"
+            android:name=".Activity.SignUp"
             android:exported="false" />
     </application>
 

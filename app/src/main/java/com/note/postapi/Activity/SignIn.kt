@@ -1,4 +1,4 @@
-package com.note.postapi
+package com.note.postapi.Activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.note.postapi.R
+import com.note.postapi.SplashScreen
 import org.json.JSONObject
 
 class SignIn : AppCompatActivity() {
