@@ -29,6 +29,7 @@ class MyRecycler(var context: FragmentActivity, var arraylist: ArrayList<MyModel
         lateinit var pr_finalprice: TextView
         lateinit var pr_discount: TextView
         lateinit var click: RelativeLayout
+        lateinit var edit: ImageView
 
 
         init {
@@ -39,6 +40,7 @@ class MyRecycler(var context: FragmentActivity, var arraylist: ArrayList<MyModel
             pr_finalprice = itemView.findViewById(R.id.pr_finalprice)
             pr_discount = itemView.findViewById(R.id.pr_discount)
             click = itemView.findViewById(R.id.click)
+            edit = itemView.findViewById(R.id.edit)
         }
     }
 
@@ -81,7 +83,7 @@ class MyRecycler(var context: FragmentActivity, var arraylist: ArrayList<MyModel
             holder.pr_finalprice.visibility = View.GONE
             holder.pr_discount.visibility = View.GONE
         }
-        holder.click.setOnClickListener {
+        holder.edit.setOnClickListener {
             var bundle = Bundle()
 
             bundle.putString("pr_name", arraylist[position].PRODUCT_NAME)

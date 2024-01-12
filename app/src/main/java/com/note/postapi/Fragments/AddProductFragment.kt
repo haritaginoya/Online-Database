@@ -45,12 +45,14 @@ class AddProductFragment : Fragment() {
     lateinit var dis: TextInputEditText
     lateinit var add: MaterialButton
     lateinit var progress: ProgressBar
+    var idd=0
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         selct_photo = view.findViewById(R.id.selct_photo)
         progress = view.findViewById(R.id.progress)
         dis = view.findViewById(R.id.dis)
-
+        idd = SplashScreen.sp.getInt("id", 0)
 
         var value = arguments?.getBoolean("value")
         selct_photo.setOnClickListener {
@@ -100,7 +102,7 @@ class AddProductFragment : Fragment() {
                     var imageinbyte = baos.toByteArray()
                     var imagedata = Base64.encodeToString(imageinbyte, 0)
 
-                    var id = SplashScreen.sp.getInt("id", 0)
+
 
                     var que = Volley.newRequestQueue(context)
                     var url = "https://kotlinwork.000webhostapp.com/addproduct.php"
@@ -120,7 +122,7 @@ class AddProductFragment : Fragment() {
 
                                 var mapp = HashMap<String, String>()
 
-                                mapp.put("loginid", id.toString())
+                                mapp.put("loginid", idd.toString())
                                 mapp.put("product_name", product_name.text.toString())
                                 mapp.put("product_price", product_price.text.toString())
                                 mapp.put("product_des", product_des.text.toString())
@@ -175,6 +177,7 @@ class AddProductFragment : Fragment() {
 
     val REQUEST_CODE = 200
     fun editproduct() {
+
         var pr_name = arguments?.getString("pr_name")
         var pr_price = arguments?.getString("pr_price")
         var pr_des = arguments?.getString("pr_des")
@@ -222,15 +225,18 @@ class AddProductFragment : Fragment() {
                 override fun getParams(): MutableMap<String, String>? {
                     var map = HashMap<String, String>()
 
-                    map.put("loginid", id.toString())
+                    map.put("loginid", idd.toString())
                     map.put("product_name", product_name.text.toString())
-                    map.put("product_price", product_price.text.toString())
+                    map.put("product_price", product_name.text.toString())
                     map.put("product_des", product_des.text.toString())
                     map.put("discount", dis.text.toString())
                     Log.e("------", "getParams: $pr_image")
                     map.put("oldimage", pr_image.toString())
                     map.put("newimage", imagedata.toString())
-
+                    Log.e(
+                        "pppppppp",
+                        "getParams: ${idd},${product_name.text.toString()},${product_name.text.toString()},${product_des.text.toString()},${dis.text.toString()}",
+                    )
                     return map
                 }
             }
