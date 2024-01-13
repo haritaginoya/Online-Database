@@ -28,6 +28,7 @@ import com.note.postapi.R
 import com.note.postapi.SplashScreen
 import java.io.ByteArrayOutputStream
 
+
 class AddProductFragment : Fragment() {
 
 
@@ -151,10 +152,13 @@ class AddProductFragment : Fragment() {
 
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
 
+            Log.d("=====", "onActivityResult: ")
+
             // if multiple images are selected
             if (data?.getClipData() != null) {
-                var count = data.clipData?.itemCount
 
+                Log.d("=====", "onActivityResult:  --->   1")
+                var count = data.clipData?.itemCount
 
                 for (i in 0..count!! - 1) {
                     var imageUri: Uri = data.clipData?.getItemAt(i)!!.uri
@@ -167,8 +171,17 @@ class AddProductFragment : Fragment() {
             } else if (data?.getData() != null) {
                 // if single image is selected
 
+                Log.d("=====", "onActivityResult:  ---> ${data.data!!}")
+
                 var imageUri: Uri = data.data!!
-                selct_photo.setImageURI(imageUri)
+//                selct_photo.setImageURI(imageUri)
+
+                Glide.with(this@AddProductFragment)
+                    .load(data.data)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .error(R.drawable.appicon)
+                    .into(selct_photo)
                 //   iv_image.setImageURI(imageUri) Here you can assign the picked image uri to your imageview
 
             }
@@ -178,14 +191,20 @@ class AddProductFragment : Fragment() {
     val REQUEST_CODE = 200
     fun editproduct() {
 
+        Log.d("=====", "editproduct: ")
+
         var pr_name = arguments?.getString("pr_name")
         var pr_price = arguments?.getString("pr_price")
         var pr_des = arguments?.getString("pr_des")
         var pr_image = arguments?.getString("pr_image")
         var discount = arguments?.getString("discount")
-        Glide.with(this).load("https://kotlinwork.000webhostapp.com/$pr_image").diskCacheStrategy(
-            DiskCacheStrategy.NONE
-        ).skipMemoryCache(true).into(selct_photo)
+
+        Glide.with(this)
+            .load("https://kotlinwork.000webhostapp.com/$pr_image")
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .error(R.drawable.app)
+            .into(selct_photo)
 
         product_name.setText(pr_name)
         product_price.setText(pr_price)
@@ -227,7 +246,7 @@ class AddProductFragment : Fragment() {
 
                     map.put("loginid", idd.toString())
                     map.put("product_name", product_name.text.toString())
-                    map.put("product_price", product_name.text.toString())
+                    map.put("product_price", product_price.text.toString())
                     map.put("product_des", product_des.text.toString())
                     map.put("discount", dis.text.toString())
                     Log.e("------", "getParams: $pr_image")
@@ -244,4 +263,7 @@ class AddProductFragment : Fragment() {
         }
     }
 
+
+
 }
+

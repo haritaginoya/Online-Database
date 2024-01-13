@@ -1,5 +1,7 @@
 package com.note.postapi.Activity
 
+import android.R
+import android.app.Fragment
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -7,12 +9,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
+
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.note.postapi.Fragments.AddProductFragment
 import com.note.postapi.Fragments.ViewFragment
-import com.note.postapi.R
 import com.note.postapi.SplashScreen
+
 
 class HomePage : AppCompatActivity() {
 
@@ -21,20 +24,27 @@ class HomePage : AppCompatActivity() {
     lateinit var navigation: NavigationView
     var username = ""
     var imagepath = ""
-    lateinit var heading : TextView
+    lateinit var heading: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.homepage)
+        setContentView(com.note.postapi.R.layout.homepage)
 
-        tool = findViewById(R.id.tool)
-        drawer = findViewById(R.id.drawer)
-        navigation = findViewById(R.id.navigation)
 
-        heading = findViewById(R.id.heading)
+        tool = findViewById(com.note.postapi.R.id.tool)
+        drawer = findViewById(com.note.postapi.R.id.drawer)
+        navigation = findViewById(com.note.postapi.R.id.navigation)
+
+        heading = findViewById(com.note.postapi.R.id.heading)
         setSupportActionBar(tool)
 
-        var actiontoggle = ActionBarDrawerToggle(this, drawer, tool, R.string.open, R.string.close)
+        var actiontoggle = ActionBarDrawerToggle(
+            this,
+            drawer,
+            tool,
+            com.note.postapi.R.string.open,
+            com.note.postapi.R.string.close
+        )
 
         actiontoggle.syncState()
 
@@ -44,20 +54,21 @@ class HomePage : AppCompatActivity() {
         var view = navigation.getHeaderView(0)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.framelayout, ViewFragment()).commit()
-
+            .replace(com.note.postapi.R.id.framelayout, ViewFragment()).commit()
+//        frag(com.note.postapi.R.id.framelayout)
 
         navigation.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.addproduct -> {
+                com.note.postapi.R.id.addproduct -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.framelayout, AddProductFragment()).commit()
+                        .replace(com.note.postapi.R.id.framelayout, AddProductFragment()).commit()
                     heading.setText("ADD PRODUCT")
                     drawer.closeDrawers();
                 }
-                R.id.viewproduct -> {
+
+                com.note.postapi.R.id.viewproduct -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.framelayout, ViewFragment()).commit()
+                        .replace(com.note.postapi.R.id.framelayout, ViewFragment()).commit()
                     heading.setText("VIEW PRODUCT")
                     drawer.closeDrawers();
                 }
@@ -65,9 +76,9 @@ class HomePage : AppCompatActivity() {
             false
         }
 
-        image = view.findViewById(R.id.profileimage)
-        profilename = view.findViewById(R.id.profilename)
-        addproduct = view.findViewById(R.id.addproduct)
+        image = view.findViewById(com.note.postapi.R.id.profileimage)
+        profilename = view.findViewById(com.note.postapi.R.id.profilename)
+        addproduct = view.findViewById(com.note.postapi.R.id.addproduct)
 
 
         username = SplashScreen.sp.getString("username", "USER").toString()
@@ -80,4 +91,21 @@ class HomePage : AppCompatActivity() {
             .into(image);
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        var currrent = fragmentManager.backStackEntryCount
+
+    }
+
+    fun frag()
+    {
+        if (fragmentManager.backStackEntryCount > 1) {
+
+            val f: Fragment = fragmentManager.findFragmentById(com.note.postapi.R.id.framelayout)
+            if (f is ) {
+                // Do something
+            }
+        }
+    }
 }
