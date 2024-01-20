@@ -47,14 +47,14 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
-    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation("com.android.volley:volley:1.2.1")
 
-    api ("com.theartofdev.edmodo:android-image-cropper:2.8.0")
-    implementation ("com.google.android.material:material:1.11.0")
+    api("com.theartofdev.edmodo:android-image-cropper:2.8.0")
+    implementation("com.google.android.material:material:1.11.0")
 
     // For Razorpay Integration
     implementation("com.razorpay:checkout:1.6.20")
-
+    implementation ("com.jackandphantom.android:androidlikebutton:1.2.0")
 }

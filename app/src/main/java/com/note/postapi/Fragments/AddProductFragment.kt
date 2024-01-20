@@ -95,15 +95,12 @@ class AddProductFragment : Fragment() {
                     }
                 } else {
 
-
                     progress.visibility = View.VISIBLE
                     var bitmap = (selct_photo.drawable as BitmapDrawable).bitmap
                     var baos = ByteArrayOutputStream()
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
                     var imageinbyte = baos.toByteArray()
                     var imagedata = Base64.encodeToString(imageinbyte, 0)
-
-
 
                     var que = Volley.newRequestQueue(context)
                     var url = "https://kotlinwork.000webhostapp.com/addproduct.php"

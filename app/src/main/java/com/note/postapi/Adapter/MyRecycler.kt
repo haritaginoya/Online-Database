@@ -83,6 +83,7 @@ class MyRecycler(var context: FragmentActivity, var arraylist: ArrayList<MyModel
             holder.pr_finalprice.visibility = View.GONE
             holder.pr_discount.visibility = View.GONE
         }
+
         holder.edit.setOnClickListener {
             var bundle = Bundle()
 

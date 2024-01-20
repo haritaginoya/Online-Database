@@ -2,19 +2,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/click"
     android:layout_margin="5dp">
 
-    <ImageView
-        android:id="@+id/pr_image"
+    <RelativeLayout
+        android:id="@+id/first"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/pr_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.jackandphantom.androidlikebutton.AndroidLikeButton
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:like_icon="@drawable/appiconn"
+            app:unlike_icon="@drawable/cofirm"
+            app:circle_startColor="#fcd229"
+            app:circle_endColor="#f4ac1b"
+            app:dot_color_1="#f5ce31"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/edit"
+            app:dot_color_2="#ed8128"
+            />
+        <ImageView
+            android:id="@+id/edit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_weight="2.9"
+            android:src="@drawable/edit" />
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/line"
-        android:layout_below="@+id/pr_image">
+        android:layout_below="@+id/first">
 
         <TextView
             android:id="@+id/pr_name"
@@ -26,13 +56,6 @@
             android:textSize="30dp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/edit"
-            android:layout_weight="2.9"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/pr_image"
-            android:src="@drawable/edit" />
 
     </LinearLayout>
 

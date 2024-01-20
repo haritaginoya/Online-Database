@@ -1,19 +1,18 @@
 package com.note.postapi.Activity
 
-import android.R
-import android.app.Fragment
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
-
 import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.note.postapi.Fragments.AddProductFragment
 import com.note.postapi.Fragments.ViewFragment
+import com.note.postapi.R
 import com.note.postapi.SplashScreen
 
 
@@ -76,9 +75,9 @@ class HomePage : AppCompatActivity() {
             false
         }
 
-        image = view.findViewById(com.note.postapi.R.id.profileimage)
-        profilename = view.findViewById(com.note.postapi.R.id.profilename)
-        addproduct = view.findViewById(com.note.postapi.R.id.addproduct)
+        image = view.findViewById(R.id.profileimage)
+        profilename = view.findViewById(R.id.profilename)
+        addproduct = view.findViewById(R.id.addproduct)
 
 
         username = SplashScreen.sp.getString("username", "USER").toString()
@@ -92,20 +91,22 @@ class HomePage : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
 
-        var currrent = fragmentManager.backStackEntryCount
+        fragmentManager
 
-    }
+        //if(supportFragmentManager.fragments.size > 0) {
+        Log.d("=====", "frag:  ---> ${supportFragmentManager.fragments.size}")
+        if (supportFragmentManager.fragments.lastOrNull() is AddProductFragment) {
+            Log.d("=====", "frag:  ---> this is AddProductFragment")
 
-    fun frag()
-    {
-        if (fragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.framelayout, ViewFragment()).commit()
 
-            val f: Fragment = fragmentManager.findFragmentById(com.note.postapi.R.id.framelayout)
-            if (f is ) {
-                // Do something
-            }
+        }else{
+            super.onBackPressed()
         }
+        //}
     }
+
+
 }

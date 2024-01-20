@@ -70,9 +70,6 @@ class SignIn : AppCompatActivity() {
                     PASSWORD = data.getString("PASSWORD")
                     IMAGEPATH = data.getString("IMAGEPATH")
 
-
-
-
                     SplashScreen.edit.putBoolean("user", true)
                     SplashScreen.edit.putString("username", USERNAME)
                     SplashScreen.edit.putInt("id", ID)
